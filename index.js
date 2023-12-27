@@ -8,8 +8,8 @@ const client = new Client({
 	],
 });
 
-client.once(Events.ClientReady, () => {
-	console.log(`Logged in as ${client.user.tag}!`);
+client.once(Events.ClientReady, readyClient => {
+	console.log(`Ready! Logged in as ${readyClient.user.tag}`);
 });
 
 client.login(process.env.TOKEN);
