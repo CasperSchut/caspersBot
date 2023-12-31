@@ -68,27 +68,6 @@ client.on(Events.InteractionCreate, async interaction => {
 		console.error(`No command matching ${interaction.commandName} was found.`);
 		return;
 	}
-	if (command === "addtag") {
-		const tagName = interaction.options.getString("name");
-		const tagDescription = interaction.options.getString("description");
-
-		try {
-			const tag = await Tags.create({
-				name: tagName,
-				description: tagDescription,
-				username: interaction.user.username,
-			});
-
-			return interaction.reply(`Tag ${tag.name} added.`);
-		}
-		catch (error) {
-			if (error.name === "SequelizeUniqueConstraintError") {
-				return interaction.reply("That tag already exists.");
-			}
-
-			return interaction.reply("Something went wrong with adding a tag.");
-		}
-	}
 	try {
 		await command.execute(interaction);
 	} catch (error) {
