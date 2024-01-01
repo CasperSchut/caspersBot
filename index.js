@@ -1,7 +1,6 @@
 /* eslint-disable brace-style */
 /* eslint-disable comma-dangle */
 require("dotenv").config();
-const Sequelize = require("sequelize");
 const fs = require("node:fs");
 const path = require("node:path");
 const { Client, Collection, Events, GatewayIntentBits } = require("discord.js");
@@ -12,27 +11,6 @@ const client = new Client({
 		GatewayIntentBits.GuildMessages,
 		GatewayIntentBits.MessageContent,
 	],
-});
-
-const sequelize = new Sequelize("database", "user", "password", {
-	host: "localhost",
-	dialect: "sqlite",
-	logging: false,
-	storage: "database.sqlite",
-});
-
-const Tags = sequelize.define("tags", {
-	name: {
-		type: Sequelize.STRING,
-		unique: true,
-	},
-	description: Sequelize.TEXT,
-	username: Sequelize.STRING,
-	usage_count: {
-		type: Sequelize.INTEGER,
-		defaultValue: 0,
-		allowNull: false,
-	},
 });
 
 client.commands = new Collection();
@@ -57,7 +35,6 @@ for (const folder of commandFolders) {
 }
 
 client.once(Events.ClientReady, (readyClient) => {
-	Tags.sync();
 	console.log(`Ready! Logged in as ${readyClient.user.tag}`);
 });
 
