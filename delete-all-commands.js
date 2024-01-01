@@ -10,7 +10,7 @@ rest
 	.catch(console.error);
 
 // for global commands
-rest
-	.put(Routes.applicationCommands(process.env.ID), { body: [] })
-	.then(() => console.log("Successfully deleted all application commands"))
-	.catch(console.error);
+// rest
+// 	.put(Routes.applicationCommands(process.env.ID), { body: [] })
+// 	.then(() => console.log("Successfully deleted all application commands"))
+// 	.catch(console.error);
