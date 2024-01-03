@@ -4,6 +4,7 @@ require("dotenv").config();
 const fs = require("node:fs");
 const path = require("node:path");
 const { Client, Collection, Events, GatewayIntentBits } = require("discord.js");
+const Tags = require("./models/guild");
 
 const client = new Client({
 	intents: [
@@ -35,6 +36,7 @@ for (const folder of commandFolders) {
 }
 
 client.once(Events.ClientReady, (readyClient) => {
+	Tags.sync();
 	console.log(`Ready! Logged in as ${readyClient.user.tag}`);
 });
 

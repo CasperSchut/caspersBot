@@ -1,17 +1,18 @@
 const Sequelize = require("sequelize");
 const sequelize = require("../database/database");
 
-module.exports = sequelize.define("guild", {
-	id: {
+const Tags = sequelize.define("tags", {
+	name: {
 		type: Sequelize.STRING,
-		primaryKey: true,
+		unique: true,
 	},
-	welcomeChannelId: {
-		type: Sequelize.STRING,
-		allowNull: true,
-	},
-	welcomeRoleId: {
-		type: Sequelize.STRING,
+	description: Sequelize.TEXT,
+	username: Sequelize.STRING,
+	usage_count: {
+		type: Sequelize.INTEGER,
+		defaultValue: 0,
 		allowNull: true,
 	},
 });
+
+module.exports = Tags;
