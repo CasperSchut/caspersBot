@@ -3,32 +3,15 @@ const { SlashCommandBuilder } = require("discord.js");
 module.exports = {
 	data: new SlashCommandBuilder()
 		.setName("addtag")
-		.setDescription("Adds a tag."),
+		.setDescription("Adds a tag.")
+		.addStringOption((option) => option.setName("name").setDescription("Sets the name of the tag."))
+		.addStringOption((option) => option.setName("description").setDescription("Sets the description of the tag.")),
 	async execute(interaction) {
 		const tagName = interaction.options.getString("name");
 		const tagDescription = interaction.options.getString("description");
+		const Tags = require("../../models/guild");
 
 		try {
-			const Sequelize = require("sequelize");
-			const sequelize = new Sequelize("database", "user", "password", {
-				host: "localhost",
-				dialect: "sqlite",
-				logging: false,
-				storage: "database.sqlite",
-			});
-			const Tags = sequelize.define("tags", {
-				name: {
-					type: Sequelize.STRING,
-					unique: true,
-				},
-				description: Sequelize.TEXT,
-				username: Sequelize.STRING,
-				usage_count: {
-					type: Sequelize.INTEGER,
-					defaultValue: 0,
-					allowNull: false,
-				},
-			});
 			const tag = await Tags.create({
 				name: tagName,
 				description: tagDescription,

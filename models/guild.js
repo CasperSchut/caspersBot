@@ -5,6 +5,7 @@ const Tags = sequelize.define("tags", {
 	name: {
 		type: Sequelize.STRING,
 		unique: true,
+		primaryKey: true,
 	},
 	description: Sequelize.TEXT,
 	username: Sequelize.STRING,
