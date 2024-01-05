@@ -3,4 +3,4 @@ img
 A_project-plan
 trash
 .eslintrc.json
-database.sqlite
+*.sqlite
