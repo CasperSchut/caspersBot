@@ -1,19 +1,12 @@
 const Sequelize = require("sequelize");
-const sequelize = require("../database/database");
+const sequelize = require("../database/database.js");
 
-const Tags = sequelize.define("tags", {
-	name: {
+const database = sequelize.define("tags", {
+	userName: {
 		type: Sequelize.STRING,
-		unique: true,
 		primaryKey: true,
 	},
-	description: Sequelize.TEXT,
-	username: Sequelize.STRING,
-	usage_count: {
-		type: Sequelize.INTEGER,
-		defaultValue: 0,
-		allowNull: true,
-	},
+	userHP: Sequelize.INTEGER,
 });
 
-module.exports = Tags;
+module.exports = database;
